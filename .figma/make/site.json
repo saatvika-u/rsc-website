@@ -1,0 +1,10 @@
+{
+  "description": "Showcases the COEP Robotics Club with multiple landing pages and a dynamic sponsor carousel to engage visitors and highlight key information.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
