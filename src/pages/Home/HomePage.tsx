@@ -1,5 +1,6 @@
 import { Link } from "react-router"
 import { PageHeader } from "../../components/RouteChrome"
+import StlViewer from "../../components/StlViewer"
 
 const heroImage = "/images/hero.jpg"
 const teamImage =
@@ -284,6 +285,26 @@ export default function HomePage() {
               </article>
             ))}
           </div>
+        </section>
+
+        <section className="cad-showcase" id="cad-viewer">
+          <div className="cad-copy">
+            <span className="eyebrow">Interactive engineering</span>
+            <h2>
+              Inspect the build.
+              <br />
+              From every angle.
+            </h2>
+            <p>
+              Explore a sample STL directly in the browser. Rotate, zoom and
+              inspect the model just like a part on the workbench.
+            </p>
+            <div className="cad-file">
+              <span>Loaded file</span>
+              <strong>sample-rover.stl</strong>
+            </div>
+          </div>
+          <StlViewer />
         </section>
 
         <section className="team">
