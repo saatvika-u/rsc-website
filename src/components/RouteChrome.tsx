@@ -112,18 +112,20 @@ export function PageShell({
   title,
   intro,
   children,
+  className,
 }: {
-  eyebrow: string
+  eyebrow?: string
   title: string
   intro: string
   children: ReactNode
+  className?: string
 }) {
   return (
-    <div className="route-page">
+    <div className={className ? `route-page ${className}` : "route-page"}>
       <PageHeader />
       <main>
         <section className="route-hero">
-          <span>{eyebrow}</span>
+          {eyebrow && <span>{eyebrow}</span>}
           <h1>{title}</h1>
           <p>{intro}</p>
         </section>

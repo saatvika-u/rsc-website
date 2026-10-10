@@ -1,4 +1,4 @@
-import { Link } from "react-router"
+import { Link, useLocation } from "react-router"
 import { PageHeader } from "../../components/RouteChrome"
 import StlViewer from "../../components/StlViewer"
 
@@ -84,8 +84,25 @@ function Arrow({ down = false }: { down?: boolean }) {
 }
 
 export default function HomePage() {
+  const location = useLocation()
+
   return (
     <div className="site">
+      <div className="home-entry" aria-hidden="true" key={location.key}>
+        <div className="home-entry-mark">
+          <div className="home-entry-pixels">
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+          </div>
+          <img src="/images/rscwhitelogo.png" alt="" />
+        </div>
+      </div>
       <PageHeader />
 
       <main>

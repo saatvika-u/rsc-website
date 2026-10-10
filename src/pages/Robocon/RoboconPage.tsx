@@ -1,90 +1,11 @@
+import { useState } from "react"
 import { PageShell } from "../../components/RouteChrome"
-import ImageArchive, {
-  ArchiveItem,
-} from "../../components/ImageArchive"
-
-const roboconArchive: ArchiveItem[] = [
-  {
-    image: "/images/robocon/robocon-24.jpg",
-    title: "ABU ROBOCON",
-    year: 2024,
-    alt: "Robot Study Circle at ABU ROBOCON 2024",
-  },
-  {
-    image: "/images/robocon/Robocon_2023.png",
-    title: "ABU ROBOCON",
-    year: 2023,
-    alt: "Robot Study Circle at ABU ROBOCON 2023",
-  },
-  {
-    image: "/images/robocon/Robocon_2019.png",
-    title: "ABU ROBOCON",
-    year: 2019,
-    alt: "Robot Study Circle at ABU ROBOCON 2019",
-  },
-  {
-    image: "/images/robocon/Robocon%202019.png",
-    title: "ABU ROBOCON",
-    year: 2019,
-    alt: "ROBOCON 2019 team and robot",
-  },
-  {
-    image: "/images/robocon/Robocon2017.jpg",
-    title: "International ROBOCON",
-    year: 2017,
-    alt: "Robot Study Circle representing India at ROBOCON 2017",
-  },
-  {
-    image: "/images/robocon/Robocon-2017.png",
-    title: "ABU ROBOCON",
-    year: 2017,
-    alt: "ABU ROBOCON 2017 competition",
-  },
-  {
-    image: "/images/robocon/Robocon-17.png",
-    title: "ABU ROBOCON",
-    year: 2017,
-    alt: "Robot Study Circle at ROBOCON 2017",
-  },
-  {
-    image: "/images/robocon/Robocon17.png",
-    title: "ABU ROBOCON",
-    year: 2017,
-    alt: "ROBOCON 2017 event",
-  },
-  {
-    image: "/images/robocon/Robocon2016.jpg",
-    title: "ABU ROBOCON",
-    year: 2016,
-    alt: "Robot Study Circle at ABU ROBOCON 2016",
-  },
-  {
-    image: "/images/robocon/Robocon-2016.png",
-    title: "ABU ROBOCON",
-    year: 2016,
-    alt: "ROBOCON 2016 competition",
-  },
-  {
-    image: "/images/robocon/Robocon_2015.png",
-    title: "ABU ROBOCON",
-    year: 2015,
-    alt: "Robot Study Circle at ABU ROBOCON 2015",
-  },
-  {
-    image: "/images/robocon/Robocon_09.png",
-    title: "ABU ROBOCON",
-    year: 2009,
-    alt: "Robot Study Circle at ABU ROBOCON 2009",
-  },
-  {
-    image: "/images/robocon/Robocon_07.png",
-    title: "ABU ROBOCON",
-    year: 2007,
-    alt: "Robot Study Circle at ABU ROBOCON 2007",
-  },
-]
+import { roboconEvents } from "../../data/robocon"
 
 export default function RoboconPage() {
+  const [expanded, setExpanded] = useState(false)
+  const visibleEvents = expanded ? roboconEvents : roboconEvents.slice(0, 3)
+
   return (
     <PageShell
       eyebrow="ABU ROBOCON"
@@ -118,9 +39,54 @@ export default function RoboconPage() {
       </section>
       <section className="archive-heading">
         <span>ROBOCON through the years</span>
-        <h2>Latest moments from the arena.</h2>
+        <h2>Every challenge. Every arena.</h2>
       </section>
-      <ImageArchive items={roboconArchive} label="ROBOCON years" />
+      <div className="robocon-history">
+        {visibleEvents.map((event, index) => (
+          <article className="robocon-entry" key={event.year}>
+            <div className="robocon-entry-meta">
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{event.year}</strong>
+              <p>{event.location}</p>
+            </div>
+            <div className="robocon-entry-content">
+              <span>Theme</span>
+              <h2>{event.theme}</h2>
+              <p>{event.description}</p>
+              {event.achievement && (
+                <div className="robocon-result">
+                  <span>Event details</span>
+                  <p>{event.achievement}</p>
+                </div>
+              )}
+              {event.images.length > 0 && (
+                <div
+                  className={`robocon-images robocon-images-${Math.min(event.images.length, 3)}`}
+                >
+                  {event.images.map((image) => (
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      loading="lazy"
+                      key={image.src}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+      <div className="archive-actions">
+        <button
+          type="button"
+          aria-expanded={expanded}
+          onClick={() => setExpanded((current) => !current)}
+        >
+          {expanded ? "Show latest three" : "See all ROBOCON years"}
+          <span aria-hidden="true">{expanded ? "−" : "+"}</span>
+        </button>
+      </div>
     </PageShell>
   )
 }
