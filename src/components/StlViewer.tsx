@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react"
 type ViewerStatus = "loading" | "ready" | "error"
 
 export default function StlViewer({
-  modelUrl = "/models/sample-rover.stl",
+  modelUrl = "/models/SuperFinalSR-reduced.stl",
 }: {
   modelUrl?: string
 }) {
@@ -204,12 +204,8 @@ export default function StlViewer({
         </div>
       </div>
       <div className="stl-toolbar">
-        <p>
-          <span>Drag</span> rotate
-          <span>Scroll / pinch</span> zoom
-        </p>
         <button type="button" onClick={() => resetRef.current()}>
-          Reset view
+          Reset
         </button>
       </div>
     </div>
