@@ -5,70 +5,23 @@ import StlViewer from "../../components/StlViewer"
 const heroImage = "/images/hero.jpg"
 const teamImage =
   "https://images.unsplash.com/photo-1581092333322-31d2fd38a35e?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=85&w=1400"
-const roverImage =
-  "https://images.unsplash.com/photo-1612338762643-298feee70520?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=85&w=1400"
-
-const projects = [
-  {
-    number: "01",
-    title: "Drones",
-    label: "Aerial Systems",
-    description:
-      "Autonomous aerial platforms designed for perception, navigation and real-world operations.",
-  },
-  {
-    number: "02",
-    title: "Railway Track Surveillance Robot",
-    label: "Inspection Robotics",
-    description:
-      "A mobile robotic platform engineered to inspect railway infrastructure and identify risk.",
-  },
-  {
-    number: "03",
-    title: "Bomb Disposal Robots",
-    label: "Safety Systems",
-    description:
-      "Remotely operated machines that help experts investigate and handle hazardous situations.",
-  },
-  {
-    number: "04",
-    title: "Badminton Playing Robots",
-    label: "Competition Robotics",
-    description:
-      "Fast, precise machines combining motion planning, control and rapid mechanical actuation.",
-  },
-]
-
-const milestones = [
-  [
-    "2004",
-    "The circle begins",
-    "A student-led space for building, testing and sharing robotics.",
-  ],
-  [
-    "2017",
-    "Represented India",
-    "RSC competes at International ROBOCON in Tokyo, Japan.",
-  ],
-  [
-    "2017",
-    "Nagase Award",
-    "Sixth internationally, along with the prestigious Nagase Award.",
-  ],
-  [
-    "Today",
-    "Building forward",
-    "New members continue a two-decade culture of ambitious engineering.",
-  ],
-]
 
 const sponsors = [
-  "SIEMENS PLM",
-  "VOLKSWAGEN",
-  "JANATICS",
-  "SCHMALZ",
-  "P&F",
-  "ROBOLAB",
+  {
+    name: "Altium",
+    logo: "/images/sponsor-home/altium-designer.png",
+    href: "https://www.altium.com/in",
+  },
+  {
+    name: "SolidWorks",
+    logo: "/images/sponsor-home/SolidWorks.png",
+    href: "https://www.solidworks.com/",
+  },
+  {
+    name: "Robotex",
+    logo: "/images/sponsor-home/robotex.png",
+    href: "https://www.robotex-india.in/",
+  },
 ]
 
 function Arrow({ down = false }: { down?: boolean }) {
@@ -132,8 +85,7 @@ export default function HomePage() {
 
         <section className="sponsors" id="sponsors">
           <div className="sponsor-header">
-            <span className="eyebrow">Industry collaborators</span>
-            <p>Partners who help ambitious student engineering move forward.</p>
+            <span className="eyebrow">Industry Partners</span>
           </div>
           <div className="sponsor-window">
             <div className="sponsor-track">
@@ -143,11 +95,18 @@ export default function HomePage() {
                   key={group}
                   aria-hidden={group === 1}
                 >
-                  {sponsors.map((sponsor, index) => (
-                    <div className="sponsor-item" key={`${group}-${sponsor}`}>
-                      <span className={`sponsor-mark mark-${index % 3}`} />
-                      {sponsor}
-                    </div>
+                  {sponsors.map((sponsor) => (
+                    <a
+                      className="sponsor-item"
+                      href={sponsor.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      tabIndex={group === 1 ? -1 : undefined}
+                      aria-label={`Visit ${sponsor.name}`}
+                      key={`${group}-${sponsor.name}`}
+                    >
+                      <img src={sponsor.logo} alt={`${sponsor.name} logo`} />
+                    </a>
                   ))}
                 </div>
               ))}
@@ -176,9 +135,9 @@ export default function HomePage() {
               track surveillance robots to bomb disposal and badminton playing
               robots.
             </p>
-            <a href="#projects" className="text-link">
+            <Link to="/projects" className="text-link">
               Explore our work <Arrow />
-            </a>
+            </Link>
           </div>
           <div className="intro-stats">
             <div>
@@ -196,125 +155,11 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="journey" id="journey">
-          <div className="section-title">
-            <div>
-              <span className="eyebrow">Our journey</span>
-              <h2>
-                Built over time.
-                <br />
-                Focused on what&apos;s next.
-              </h2>
-            </div>
-            <p>
-              Two decades of learning in public, competing at the highest level
-              and sharing every lesson with the next generation.
-            </p>
-          </div>
-          <div className="timeline">
-            {milestones.map(([year, title, body], index) => (
-              <article key={`${year}-${title}`}>
-                <div className="timeline-marker">
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                </div>
-                <time>{year}</time>
-                <h3>{title}</h3>
-                <p>{body}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="feature" id="robocon">
-          <div className="feature-image">
-            <img src={roverImage} alt="A student testing a robotic vehicle" />
-            <span>National Champions</span>
-          </div>
-          <div className="feature-content" id="achievements">
-            <span className="eyebrow">The defining achievement</span>
-            <p className="feature-year">2017</p>
-            <h2>
-              India to
-              <br />
-              the world.
-            </h2>
-            <p>
-              RSC represented India at International ROBOCON 2017 in Tokyo,
-              Japan—finishing sixth internationally and winning the prestigious
-              <strong> Nagase Award</strong>.
-            </p>
-            <div className="achievement-grid">
-              <div>
-                <b>01</b>
-                <span>
-                  National
-                  <br />
-                  Champion
-                </span>
-              </div>
-              <div>
-                <b>06</b>
-                <span>
-                  International
-                  <br />
-                  Position
-                </span>
-              </div>
-              <div>
-                <b>01</b>
-                <span>
-                  Nagase
-                  <br />
-                  Award
-                </span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="projects" id="projects">
-          <div className="section-title">
-            <div>
-              <span className="eyebrow">Selected work</span>
-              <h2>
-                Machines made
-                <br />
-                for the real world.
-              </h2>
-            </div>
-            <p>
-              We work across mechanics, electronics, software and control to
-              take ambitious systems from first principles to field tests.
-            </p>
-          </div>
-          <div className="project-list" id="competitions">
-            {projects.map((project) => (
-              <article key={project.number}>
-                <span className="project-number">{project.number}</span>
-                <div>
-                  <span className="project-label">{project.label}</span>
-                  <h3>{project.title}</h3>
-                </div>
-                <p>{project.description}</p>
-                <a href="#contact" aria-label={`Learn about ${project.title}`}>
-                  <Arrow />
-                </a>
-              </article>
-            ))}
-          </div>
-        </section>
-
         <section className="cad-showcase" id="cad-viewer">
           <div className="cad-copy">
             <h2>
-              Inspect the build.
-              <br />
-              From every angle.
+              Join us on our <Link to="/robocon">ROBOCON</Link> journey.
             </h2>
-            <p>
-              Explore an RSC robot directly in the browser. Rotate, zoom and
-              inspect the model just like a part on the workbench.
-            </p>
           </div>
           <StlViewer />
         </section>
@@ -327,33 +172,19 @@ export default function HomePage() {
             />
           </div>
           <div className="team-copy">
-            <span className="eyebrow">One multidisciplinary team</span>
-            <h2>
-              Different skills.
-              <br />
-              Shared ambition.
-            </h2>
-            <p>
-              Mechanical design meets embedded systems, computer vision and
-              strategy. What connects us is the willingness to make, break,
-              learn and build again.
-            </p>
-            <a className="button" href="#contact">
-              Join the circle <Arrow />
-            </a>
+            <h2>Explore our Workshops.</h2>
           </div>
         </section>
 
         <section className="contact" id="contact">
-          <span className="eyebrow">Start building with us</span>
           <h2>
             Power our
             <br />
             <span className="accent-text">next</span> breakthrough.
           </h2>
-          <a href="mailto:robotics@coep.ac.in" className="contact-link">
+          <Link to="/contact" className="contact-link">
             Get in touch <Arrow />
-          </a>
+          </Link>
           <div className="contact-orbit" aria-hidden="true">
             <span>RSC</span>
           </div>
@@ -370,6 +201,7 @@ export default function HomePage() {
             <img src="/images/rsc_footer.png" alt="Robot Study Circle" />
           </Link>
           <p>Explore. Learn. Build. Share.</p>
+          <span>© 2026 Robot Study Circle</span>
         </div>
         <div>
           <h3>Find us</h3>
@@ -397,7 +229,6 @@ export default function HomePage() {
           </div>
         </div>
         <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} Robot Study Circle</span>
           <a href="#home">Back to top ↑</a>
         </div>
       </footer>

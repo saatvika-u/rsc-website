@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react"
 type ViewerStatus = "loading" | "ready" | "error"
 
 export default function StlViewer({
-  modelUrl = "/models/SuperFinalSR-reduced.stl",
+  modelUrl = "/models/SuperFinalSR(1)-reduced.stl",
 }: {
   modelUrl?: string
 }) {
@@ -31,10 +31,10 @@ export default function StlViewer({
 
         const scene = new THREE.Scene()
         scene.background = new THREE.Color(0x081221)
-        scene.fog = new THREE.Fog(0x081221, 8, 16)
 
         const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100)
-        camera.position.set(4.8, 3.2, 5.8)
+        const defaultDirection = new THREE.Vector3(1, 0.72, 1.15).normalize()
+        let defaultDistance = 7
 
         const renderer = new THREE.WebGLRenderer({
           antialias: true,
@@ -64,8 +64,6 @@ export default function StlViewer({
         const controls = new OrbitControls(camera, renderer.domElement)
         controls.enableDamping = true
         controls.enablePan = false
-        controls.minDistance = 3
-        controls.maxDistance = 11
         controls.autoRotate = true
         controls.autoRotateSpeed = 0.8
         controls.target.set(0, 0, 0)
@@ -74,7 +72,7 @@ export default function StlViewer({
         })
 
         const resetView = () => {
-          camera.position.set(4.8, 3.2, 5.8)
+          camera.position.copy(defaultDirection).multiplyScalar(defaultDistance)
           controls.target.set(0, 0, 0)
           controls.autoRotate = true
           controls.update()
@@ -102,24 +100,34 @@ export default function StlViewer({
               3.7 / largestDimension,
               3.7 / largestDimension,
             )
+            geometry.computeBoundingSphere()
 
             const material = new THREE.MeshStandardMaterial({
-              color: 0xee353d,
-              metalness: 0.62,
-              roughness: 0.32,
+              color: 0xb4bdc9,
+              metalness: 0.52,
+              roughness: 0.46,
+              flatShading: true,
+              side: THREE.DoubleSide,
             })
             const model = new THREE.Mesh(geometry, material)
             scene.add(model)
 
-            const edges = new THREE.LineSegments(
-              new THREE.EdgesGeometry(geometry, 28),
-              new THREE.LineBasicMaterial({
-                color: 0xffa0a4,
-                transparent: true,
-                opacity: 0.32,
-              }),
+            const radius = geometry.boundingSphere?.radius || 2
+            const verticalFieldOfView = THREE.MathUtils.degToRad(camera.fov)
+            const horizontalFieldOfView =
+              2 * Math.atan(Math.tan(verticalFieldOfView / 2) * camera.aspect)
+            const limitingFieldOfView = Math.min(
+              verticalFieldOfView,
+              horizontalFieldOfView,
             )
-            scene.add(edges)
+            defaultDistance =
+              (radius / Math.sin(limitingFieldOfView / 2)) * 1.12
+            camera.near = Math.max(defaultDistance / 100, 0.01)
+            camera.far = defaultDistance * 100
+            camera.updateProjectionMatrix()
+            controls.minDistance = defaultDistance * 0.55
+            controls.maxDistance = defaultDistance * 2.2
+            resetView()
             setStatus("ready")
           },
           undefined,
@@ -160,14 +168,6 @@ export default function StlViewer({
                 object.material.dispose()
               }
             }
-            if (object instanceof THREE.LineSegments) {
-              object.geometry.dispose()
-              if (Array.isArray(object.material)) {
-                object.material.forEach((material) => material.dispose())
-              } else {
-                object.material.dispose()
-              }
-            }
           })
           renderer.dispose()
           renderer.domElement.remove()
@@ -193,7 +193,7 @@ export default function StlViewer({
           <div className="stl-status" role="status">
             <span />
             {status === "loading"
-              ? "Loading sample model"
+              ? "Loading robot model"
               : "Model could not be loaded"}
           </div>
         )}

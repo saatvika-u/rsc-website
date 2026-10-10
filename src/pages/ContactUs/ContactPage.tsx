@@ -11,13 +11,14 @@ export default function ContactPage() {
 
   return (
     <PageShell
+      className="contact-route"
       eyebrow="Contact us"
-      title="We would love to hear from you."
-      intro="Contact the Robotics & Automation Lab with membership, collaboration or sponsorship inquiries."
+      title="Let's collaborate."
+      intro="Explore our CSR initiatives and connect with the Robotics & Automation Lab for sponsorships, workshops, and collaboration opportunities."
     >
       <section className="contact-layout">
         <div className="contact-details">
-          <span>Visit the lab</span>
+          <span className="contact-label">Visit the lab</span>
           <address>
             Robotics &amp; Automation Lab,
             <br />
@@ -27,18 +28,30 @@ export default function ContactPage() {
             <br />
             Wellesley Road, Shivajinagar, Pune — 411 005
           </address>
-          <a href="tel:02025507366">020-25507366</a>
-          <a href="tel:+919527424416">+91 9527424416</a>
-          <a href="mailto:rsc@coep.ac.in">rsc@coep.ac.in</a>
-          <div>
-            <b>Lab Incharge</b>
+          <div className="contact-methods">
+            <div>
+              <span>Telephone</span>
+              <a href="tel:02025507366">020-25507366</a>
+            </div>
+            <div>
+              <span>Secretary</span>
+              <div>
+                <strong>Shreya Muley</strong>
+                <a href="tel:+919527424416">+91 9527424416</a>
+              </div>
+            </div>
+            <div>
+              <span>Mail</span>
+              <a href="mailto:rsc@coep.ac.in">rsc@coep.ac.in</a>
+            </div>
+          </div>
+          <div className="faculty-advisor">
+            <b className="contact-label">Faculty advisor</b>
+            <strong>Dr. S. S. Ohol</strong>
             <p>
-              Dr. S. S. Ohol
-              <br />
               Department of Mechanical Engineering
-              <br />
-              020-25507229
             </p>
+            <a href="tel:02025507229">020-25507229</a>
           </div>
         </div>
         <form className="contact-form" onSubmit={submit}>

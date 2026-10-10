@@ -97,11 +97,9 @@ function PageFooter() {
       >
         <img src="/images/rsc_footer.png" alt="Robot Study Circle" />
       </Link>
-      <p>Explore. Learn. Build. Share.</p>
-      <Link to="/contact">Robotics &amp; Automation Lab, COEP Pune</Link>
-      <div>
-        <span>© {new Date().getFullYear()} Robot Study Circle</span>
-        <Link to="/">Return home</Link>
+      <div className="route-footer-motto">
+        <p>Explore. Learn. Build. Share.</p>
+        <span>© 2026 Robot Study Circle</span>
       </div>
     </footer>
   )
