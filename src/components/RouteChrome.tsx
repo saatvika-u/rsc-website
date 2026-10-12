@@ -7,6 +7,7 @@ const navLinks = [
   ["/projects", "Projects"],
   ["/robocon", "ROBOCON"],
   ["/competitions", "Competitions"],
+  ["/social-outreach", "Community Outreach"],
   ["/sponsors", "Sponsors"],
   ["/awards", "Achievements"],
 ]

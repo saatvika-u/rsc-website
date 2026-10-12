@@ -1,10 +1,37 @@
+import { useState } from "react"
 import { Link, useLocation } from "react-router"
 import { PageHeader } from "../../components/RouteChrome"
 import StlViewer from "../../components/StlViewer"
 
 const heroImage = "/images/hero.jpg"
-const teamImage =
-  "https://images.unsplash.com/photo-1581092333322-31d2fd38a35e?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=85&w=1400"
+
+// Edit each workshop title and paragraph here.
+const workshopSlides = [
+  {
+    image: "/images/workshop/workshop-robot-simulation-bootcamp.jpeg",
+    title: "Robotics Simulation Bootcamp",
+    text: "A focused bootcamp where students explored professional robotics simulation tools, digital environments and industry-led approaches to building smarter robotic systems.",
+    alt: "Students and facilitators at the Robotics Simulation Bootcamp",
+  },
+  {
+    image: "/images/workshop/workshop-nugenix.jpeg",
+    title: "Mobile Manipulator Workshop",
+    text: "An expert-led workshop introducing mobile manipulators, sensor integration and open-source software through live demonstrations of advanced robotic arms.",
+    alt: "Live mobile manipulator demonstration during the Nugenix workshop",
+  },
+  {
+    image: "/images/workshop/workshop-alumni.jpeg",
+    title: "Distinguished Alumni Session",
+    text: "A conversation with an RSC alumnus connecting classroom engineering with real-world robotics, automation and the lessons learned while building a career in technology.",
+    alt: "Distinguished Robot Study Circle alumnus receiving a commemorative plaque",
+  },
+  {
+    image: "/images/workshop/workshop-campedusociety.png",
+    title: "School Robotics Workshop",
+    text: "A hands-on outreach workshop where school students learned electronics and robotics fundamentals before bringing their ideas to life through a working robot.",
+    alt: "Students presenting their robot at Camp Education Society School",
+  },
+]
 
 const sponsors = [
   {
@@ -38,6 +65,15 @@ function Arrow({ down = false }: { down?: boolean }) {
 
 export default function HomePage() {
   const location = useLocation()
+  const [activeWorkshop, setActiveWorkshop] = useState(0)
+  const workshop = workshopSlides[activeWorkshop]
+
+  const showWorkshop = (offset: number) => {
+    setActiveWorkshop(
+      (current) =>
+        (current + offset + workshopSlides.length) % workshopSlides.length,
+    )
+  }
 
   return (
     <div className="site">
@@ -70,10 +106,19 @@ export default function HomePage() {
                 alt="Robot Study Circle"
               />
               <h1>
-                <span className="hero-title-word">Robot</span>{" "}
-                <span className="hero-title-word">Study</span>
-                <br />
-                <span className="hero-title-word">Circle</span>
+                {["Robot", "Study", "Circle"].map((word) => (
+                  <span
+                    className="hero-title-word"
+                    aria-label={word}
+                    key={word}
+                  >
+                    {[...word].map((letter, index) => (
+                      <span aria-hidden="true" key={`${letter}-${index}`}>
+                        {letter}
+                      </span>
+                    ))}
+                  </span>
+                ))}
               </h1>
             </div>
             <p>Explore. Learn. Build. Share.</p>
@@ -164,15 +209,43 @@ export default function HomePage() {
           <StlViewer />
         </section>
 
-        <section className="team">
+        <section className="team" aria-label="Workshops">
           <div className="team-image">
-            <img
-              src={teamImage}
-              alt="Engineering students collaborating in a robotics lab"
-            />
+            <div
+              className="workshop-slider-track"
+              style={{ transform: `translateX(-${activeWorkshop * 100}%)` }}
+            >
+              {workshopSlides.map((slide, index) => (
+                <div className="workshop-slide" key={slide.image}>
+                  <img
+                    src={slide.image}
+                    alt={slide.alt}
+                    loading={index === 0 ? "eager" : "lazy"}
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="workshop-image-arrows">
+              <button
+                type="button"
+                aria-label="Previous workshop"
+                onClick={() => showWorkshop(-1)}
+              >
+                <Arrow />
+              </button>
+              <button
+                type="button"
+                aria-label="Next workshop"
+                onClick={() => showWorkshop(1)}
+              >
+                <Arrow />
+              </button>
+            </div>
           </div>
           <div className="team-copy">
             <h2>Explore our Workshops.</h2>
+            <h3>{workshop.title}</h3>
+            <p className="workshop-description">{workshop.text}</p>
           </div>
         </section>
 
