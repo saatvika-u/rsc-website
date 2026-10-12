@@ -197,11 +197,6 @@ export default function StlViewer({
               : "Model could not be loaded"}
           </div>
         )}
-        <div className="stl-axis" aria-hidden="true">
-          <span>X</span>
-          <span>Y</span>
-          <span>Z</span>
-        </div>
       </div>
       <div className="stl-toolbar">
         <button type="button" onClick={() => resetRef.current()}>

@@ -162,11 +162,13 @@ export default function HomePage() {
           <div className="section-number">01</div>
           <div className="intro-heading">
             <span className="eyebrow">About Robot Study Circle</span>
-            <h2>
-              Robotics is not a subject.
-              <br />
-              <em>It&apos;s our way of thinking.</em>
-            </h2>
+            <figure className="intro-team-image">
+              <img
+                src="/images/robocon/robocon26-team.jpeg"
+                alt="Robot Study Circle's ROBOCON 2026 team"
+                loading="lazy"
+              />
+            </figure>
           </div>
           <div className="intro-copy">
             <p className="lead">
@@ -174,29 +176,7 @@ export default function HomePage() {
               prestigious Robotics Club of COEP and one of the best robotics
               clubs in India.
             </p>
-            <p>
-              It&apos;s a totally different world where club members have
-              created hundreds of robots for society—from drones and railway
-              track surveillance robots to bomb disposal and badminton playing
-              robots.
-            </p>
-            <Link to="/projects" className="text-link">
-              Explore our work <Arrow />
-            </Link>
-          </div>
-          <div className="intro-stats">
-            <div>
-              <strong>20+</strong>
-              <span>Years of innovation</span>
-            </div>
-            <div>
-              <strong>100s</strong>
-              <span>Robots created</span>
-            </div>
-            <div>
-              <strong>06</strong>
-              <span>International rank</span>
-            </div>
+            <p className="intro-legacy">22 years of legacy…</p>
           </div>
         </section>
 
@@ -300,9 +280,6 @@ export default function HomePage() {
               YouTube
             </a>
           </div>
-        </div>
-        <div className="footer-bottom">
-          <a href="#home">Back to top ↑</a>
         </div>
       </footer>
     </div>
