@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { PageShell } from "../../components/RouteChrome"
+import { Arrow, PageShell } from "../../components/RouteChrome"
 import { roboconEvents } from "../../data/robocon"
 
 export default function RoboconPage() {
@@ -8,14 +8,28 @@ export default function RoboconPage() {
 
   return (
     <PageShell
-      eyebrow="ABU ROBOCON"
-      title="India to the world."
-      intro="A defining arena for RSC—where rigorous engineering, teamwork and strategy meet under pressure."
+      className="robocon-route"
+      title="ROBOCON"
     >
+      <div className="robocon-theme-strip">
+        <a
+          className="robocon-theme-link"
+          href="https://ddrobocon.iitd.ac.in/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          ROBOCON 2027 theme <Arrow />
+        </a>
+      </div>
       <section className="achievement-feature">
-        <div>
-          <span>International ROBOCON</span>
-          <strong>2017</strong>
+        <div className="achievement-video">
+          <iframe
+            src="https://www.youtube.com/embed/aYvgPKKYnk8"
+            title="International ROBOCON 2017"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
         </div>
         <div>
           <h2>Tokyo, Japan</h2>

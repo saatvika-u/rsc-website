@@ -28,7 +28,13 @@ export default function AwardsPage() {
           <p>Represented India internationally</p>
         </article>
       </section>
-      <div className="route-more">
+      <div className="route-more achievement-links">
+        <Link to="/papers-published">
+          Explore published papers <Arrow />
+        </Link>
+        <Link to="/patents">
+          Explore patents <Arrow />
+        </Link>
         <Link to="/distinguished-alumni">
           Meet distinguished alumni <Arrow />
         </Link>

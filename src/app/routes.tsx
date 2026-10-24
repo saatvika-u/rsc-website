@@ -11,6 +11,7 @@ import HomePage from "../pages/Home/HomePage"
 import IeeePage from "../pages/IEEE/IeeePage"
 import JourneyPage from "../pages/Journey/JourneyPage"
 import MediaCoveragePage from "../pages/MediaCoverage/MediaCoveragePage"
+import MathWorksPage from "../pages/MathWorks/MathWorksPage"
 import MindsparkPage from "../pages/Mindspark/MindsparkPage"
 import NotFoundPage from "../pages/NotFound/NotFoundPage"
 import PapersPublishedPage from "../pages/PapersPublished/PapersPublishedPage"
@@ -53,6 +54,7 @@ export const router = createBrowserRouter([
       { path: "ieee", Component: IeeePage },
       { path: "gallery-2024", Component: GalleryPage },
       { path: "media-coverage", Component: MediaCoveragePage },
+      { path: "mathworks", Component: MathWorksPage },
       { path: "mindspark", Component: MindsparkPage },
       { path: "papers-published", Component: PapersPublishedPage },
       { path: "patents", Component: PatentsPage },

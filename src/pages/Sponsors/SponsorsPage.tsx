@@ -19,35 +19,38 @@ const currentSponsors = [
 ]
 
 const pastSponsors = [
-  "Janatics Pneumatic",
-  "Pepperl + Fuchs",
-  "Robot Technologies",
-  "Siemens",
-  "Schmalz",
-  "Wipro Pari",
-  "iRobotics",
-  "Robotex",
-  "ROHM Semiconductor",
-  "KUKA Robotics",
-  "Festo",
-  "National Instruments",
-  "Phoenix Contact",
-  "ABB",
-  "Bosch Rexroth",
-  "Rockwell Automation",
+  {
+    name: "Wipro Pari",
+    logo: "/images/sponsors-all/wipro-pari.png",
+    href: "https://wipropari.com/",
+  },
+  {
+    name: "Pepperl + Fuchs",
+    logo: "/images/sponsors-all/pepperl+fuchs.png",
+    href: "https://www.pepperl-fuchs.com/en-in",
+  },
+  {
+    name: "Janatics",
+    logo: "/images/sponsors-all/janatics-pneumatic.jpeg",
+    href: "https://www.janatics.com/",
+  },
+  {
+    name: "Siemens",
+    logo: "/images/sponsors-all/siemens.jpg",
+    href: "https://www.siemens.com/en-us/company/about/businesses/digital-industries/",
+  },
 ]
 
 export default function SponsorsPage() {
   return (
     <PageShell
+      className="sponsor-route"
       eyebrow="Industry collaborators"
       title="Partners power the next build."
-      intro="Industry support gives student engineers access to better tools, deeper expertise and bigger possibilities."
     >
       <section className="sponsor-section" aria-labelledby="current-sponsors">
         <div className="sponsor-section-heading">
-          <span>Current sponsors</span>
-          <h2 id="current-sponsors">Supporting what we build today.</h2>
+          <span id="current-sponsors">Current sponsors</span>
         </div>
         <div className="current-partner-grid">
           {currentSponsors.map((sponsor) => (
@@ -66,15 +69,19 @@ export default function SponsorsPage() {
 
       <section className="sponsor-section past-sponsor-section" aria-labelledby="past-sponsors">
         <div className="sponsor-section-heading">
-          <span>Past sponsors</span>
-          <h2 id="past-sponsors">A legacy of industry support.</h2>
+          <span id="past-sponsors">Past sponsors</span>
         </div>
-        <div className="partner-grid past-partner-grid">
-          {pastSponsors.map((sponsor, index) => (
-            <div key={sponsor}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <strong>{sponsor}</strong>
-            </div>
+        <div className="current-partner-grid past-logo-grid">
+          {pastSponsors.map((sponsor) => (
+            <a
+              href={sponsor.href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`Visit ${sponsor.name}`}
+              key={sponsor.name}
+            >
+              <img src={sponsor.logo} alt={`${sponsor.name} logo`} />
+            </a>
           ))}
         </div>
       </section>

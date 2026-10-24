@@ -27,6 +27,7 @@ const projects = [
 export default function ProjectsPage() {
   return (
     <PageShell
+      className="projects-route"
       eyebrow="Selected projects"
       title="Machines made for the real world."
       intro="Mechanics, electronics and software brought together in systems designed to move, perceive and respond."

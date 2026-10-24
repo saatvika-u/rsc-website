@@ -100,6 +100,7 @@ export default function JourneyPage() {
   return (
     <PageShell
       className="journey-route"
+      eyebrow="Our journey"
       title="Our story starts here."
       intro="RSC was started by five students with the same mission. Two decades later, that mission keeps moving."
     >

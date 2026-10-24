@@ -4,12 +4,22 @@ import { Link } from "react-router"
 const navLinks = [
   ["/journey", "Journey"],
   ["/team", "Team"],
-  ["/projects", "Projects"],
-  ["/robocon", "ROBOCON"],
-  ["/competitions", "Competitions"],
   ["/social-outreach", "Community Outreach"],
   ["/sponsors", "Sponsors"],
   ["/awards", "Achievements"],
+]
+
+const contributionLinks = [
+  ["/projects", "Projects"],
+  ["/papers-published", "Papers"],
+  ["/patents", "Patents"],
+]
+
+const competitionLinks = [
+  ["/robocon", "ROBOCON"],
+  ["/mathworks", "MathWorks"],
+  ["/robotex", "Robotex"],
+  ["/mindspark", "Mindspark"],
 ]
 
 export function Arrow() {
@@ -62,7 +72,32 @@ export function PageHeader() {
         className={open ? "main-nav is-open" : "main-nav"}
         aria-label="Main navigation"
       >
-        {navLinks.map(([to, label]) => (
+        {navLinks.slice(0, 2).map(([to, label]) => (
+          <Link key={to} to={to} onClick={() => setOpen(false)}>
+            {label}
+          </Link>
+        ))}
+        <details className="main-nav-dropdown" name="main-navigation-dropdown">
+          <summary>Contributions</summary>
+          <div className="main-nav-dropdown-menu">
+            {contributionLinks.map(([to, label]) => (
+              <Link key={to} to={to} onClick={() => setOpen(false)}>
+                {label}
+              </Link>
+            ))}
+          </div>
+        </details>
+        <details className="main-nav-dropdown" name="main-navigation-dropdown">
+          <summary>Competitions</summary>
+          <div className="main-nav-dropdown-menu">
+            {competitionLinks.map(([to, label]) => (
+              <Link key={to} to={to} onClick={() => setOpen(false)}>
+                {label}
+              </Link>
+            ))}
+          </div>
+        </details>
+        {navLinks.slice(2).map(([to, label]) => (
           <Link key={to} to={to} onClick={() => setOpen(false)}>
             {label}
           </Link>
@@ -114,8 +149,8 @@ export function PageShell({
   className,
 }: {
   eyebrow?: string
-  title: string
-  intro: string
+  title?: ReactNode
+  intro?: string | string[]
   children: ReactNode
   className?: string
 }) {
@@ -123,10 +158,16 @@ export function PageShell({
     <div className={className ? `route-page ${className}` : "route-page"}>
       <PageHeader />
       <main>
-        <section className="route-hero">
+        <section
+          className={
+            title || intro ? "route-hero" : "route-hero route-hero--compact"
+          }
+        >
           {eyebrow && <span>{eyebrow}</span>}
-          <h1>{title}</h1>
-          <p>{intro}</p>
+          {title && <h1>{title}</h1>}
+          {Array.isArray(intro)
+            ? intro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)
+            : intro && <p>{intro}</p>}
         </section>
         <div className="route-content">{children}</div>
       </main>
