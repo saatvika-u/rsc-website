@@ -1,46 +1,127 @@
 import { PageShell } from "../../components/RouteChrome"
 
+const btechMembers = [
+  "Saatvika Udayakumar",
+  "Laya Kshetrapal",
+  "Vedant Kawarkhe",
+  "Atharv Divekar",
+  "Saleel Mutalik",
+  "Tejas Nirwan",
+  "Samruddhi Nighrunkar",
+  "Shishir Shiragave",
+  "Dhiraj Patil",
+  "Chayan Nahar",
+  "Chandan Rathore",
+]
+
+const thirdYearMembers = [
+  "Gaurav Ghodam",
+  "Vedant Pawar",
+  "Suparshv Patil",
+  "Sanskar Patil",
+  "Shrisha Saundankar",
+  "Shreyas Narade",
+  "Pranav Pawar",
+  "Prathamesh Kothawale",
+  "Kaveri Bramhne",
+  "Sumit Sonawane",
+  "Pratik Suryawanshi",
+  "Yadnyesh Kuware",
+  "Varad Malekar",
+]
+
+const secondYearMembers = [
+  "Aditya Jadhav",
+  "Vedansh",
+  "Pranav Sarang",
+  "Amogh",
+  "Shreyash",
+  "Vidushi Mantoo",
+  "Ayush",
+  "Narayani Jawale",
+  "Sanjana Ijeri",
+  "Aryan Divekar",
+  "Pranav C",
+  "Sarvesh",
+  "Riddhi Bendale",
+  "Varun Godbole",
+  "Aditya S",
+  "Delesh",
+  "Maithili",
+  "Saish",
+  "Prithviraj Kamble",
+  "Malhar Sarve",
+  "Meet Gupta",
+  "Pranitee",
+  "Harshal",
+  "Om Shinde",
+  "Janak",
+  "Sarang Gaikwad",
+  "Anjali Apradh",
+]
+
+function MemberGroup({
+  title,
+  members,
+}: {
+  title: string
+  members: string[]
+}) {
+  return (
+    <section className="team-member-group">
+      <h3>{title}</h3>
+      <ul>
+        {members.map((member) => (
+          <li key={member}>{member}</li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
 export default function TeamPage() {
   return (
-    <PageShell
-      eyebrow="About us"
-      title="One circle. Many disciplines."
-      intro="A community of students, faculty, industrial experts and alumni who find pleasure in robotics."
-    >
-      <section className="copy-grid">
-        <h2>A platform for people who want to build the future.</h2>
-        <div>
-          <p>
-            The Robot Study Circle is an undergraduate organization at College
-            of Engineering, Pune. It brings like-minded people together to share
-            knowledge and create futuristic automated machines.
-          </p>
-          <p>
-            Our objective is to build international-quality robots that prove
-            useful in a variety of environments, especially in industry.
-          </p>
+    <PageShell className="team-route">
+      <section className="team-roster" aria-labelledby="team-2027">
+        <header>
+          <span>Current team</span>
+          <h2 id="team-2027">Team 2027</h2>
+        </header>
+        <img
+          className="team-roster-photo"
+          src="/images/team/team26.jpeg"
+          alt="Robot Study Circle Team 2027"
+          loading="lazy"
+        />
+        <div className="team-advisor">
+          <span>Faculty Advisor</span>
+          <img
+            src="/images/team/FacAdvisor-Ohol.jpg"
+            alt="Dr. S. S. Ohol, Faculty Advisor"
+            loading="lazy"
+          />
+          <strong>Dr. S. S. Ohol</strong>
         </div>
-      </section>
-      <section className="requirements">
-        <span>How can you join?</span>
-        <h2>Curiosity is the first requirement.</h2>
-        <ol>
-          <li>
-            <b>01</b>You must be an undergraduate student from COEP.
-          </li>
-          <li>
-            <b>02</b>You must have a genuine interest in robotics.
-          </li>
-          <li>
-            <b>03</b>You should clear the induction process conducted by Team
-            RSC.
-          </li>
-        </ol>
-        <p>
-          You do not need to know everything about robotics when you begin.
-          You&apos;ll learn throughout the year by working on projects and
-          interacting with experienced members.
-        </p>
+        <section className="team-member-group team-btech-group">
+          <h3>B.Tech</h3>
+          <div className="team-leadership">
+            <div>
+              <span>Secretary</span>
+              <strong>Shreya Muley</strong>
+            </div>
+            <div>
+              <span>Joint Secretary</span>
+              <strong>Kavish Patil</strong>
+            </div>
+          </div>
+          <ul>
+            {btechMembers.map((member) => (
+              <li key={member}>{member}</li>
+            ))}
+          </ul>
+        </section>
+        <MemberGroup title="Third Year" members={thirdYearMembers} />
+        <MemberGroup title="Second Year" members={secondYearMembers} />
       </section>
     </PageShell>
   )

@@ -202,15 +202,16 @@ export default function PapersPublishedPage() {
             key={conference.name}
           >
             <header>
-              <span>{String(conferenceIndex + 1).padStart(2, "0")}</span>
-              <h2 id={`conference-${conferenceIndex}`}>{conference.name}</h2>
-              <p>{conference.papers.length} published papers</p>
+              <h2 id={`conference-${conferenceIndex}`}>
+                {conference.name}
+                <span>{conference.papers.length} published papers</span>
+              </h2>
             </header>
             <div className="publication-list">
               {conference.papers.map((paper) => (
                 <article key={`${paper.id}-${paper.title}`}>
                   <div className="publication-meta">
-                    <span>ID: {paper.id}</span>
+                    <span>{paper.id}</span>
                     {paper.award && <strong>{paper.award}</strong>}
                   </div>
                   <h3>{paper.title}</h3>

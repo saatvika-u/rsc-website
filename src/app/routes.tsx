@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { createBrowserRouter, Outlet, useLocation } from "react-router"
 import AboutUsPage from "../pages/AboutUs/AboutUsPage"
-import AwardsPage from "../pages/Awardspage/AwardsPage"
 import CompetitionsPage from "../pages/Competitions/CompetitionsPage"
 import ContactPage from "../pages/ContactUs/ContactPage"
 import AlumniPage from "../pages/DistinguishedAlumini/AlumniPage"
@@ -47,7 +46,6 @@ export const router = createBrowserRouter([
       { path: "robocon", Component: RoboconPage },
       { path: "competitions", Component: CompetitionsPage },
       { path: "sponsors", Component: SponsorsPage },
-      { path: "awards", Component: AwardsPage },
       { path: "contact", Component: ContactPage },
       { path: "distinguished-alumni", Component: AlumniPage },
       { path: "ftc", Component: FtcPage },

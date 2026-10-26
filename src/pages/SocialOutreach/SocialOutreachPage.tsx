@@ -45,6 +45,7 @@ const programs = [
     summary:
       "Empowering 9th and 10th-grade students from CES school in electronics, coding, and robotics.",
     images: [
+      "/images/community/CampEduSOciety.jpeg",
       "/images/community/CES-ElectronicsWorkshop2.jpeg",
       "/images/community/CES-ElectronicsWorkshop.jpeg",
     ],
@@ -87,7 +88,10 @@ const programs = [
     location: "Mangaon, Raigad",
     summary:
       "A transformative initiative to bridge technological gaps in rural communities.",
-    images: [],
+    images: [
+      "/images/community/Outreach-2022-01.png",
+      "/images/community/outreach2022.png",
+    ],
     facilitators: [
       "Koustubh Anturkar",
       "Chinmay Patil",
@@ -184,7 +188,7 @@ export default function SocialOutreachPage() {
       eyebrow="Community outreach"
       intro={[
         "At RSC, we believe technology is most powerful when shared.",
-        "Through hands-on workshops, robotics demonstrations, and educational initiatives, we bring STEM closer to young minds, inspiring curiosity and fostering the next generation of innovators.",
+        "Through hands-on workshops, robotics demonstrations, and educational initiatives, we bring STEM closer to young minds.",
       ]}
       className="outreach-route"
     >

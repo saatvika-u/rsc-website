@@ -6,20 +6,19 @@ const navLinks = [
   ["/team", "Team"],
   ["/social-outreach", "Community Outreach"],
   ["/sponsors", "Sponsors"],
-  ["/awards", "Achievements"],
 ]
 
 const contributionLinks = [
-  ["/projects", "Projects"],
   ["/papers-published", "Papers"],
   ["/patents", "Patents"],
+  ["/projects", "Projects"],
 ]
 
 const competitionLinks = [
   ["/robocon", "ROBOCON"],
-  ["/mathworks", "MathWorks"],
   ["/robotex", "Robotex"],
   ["/mindspark", "Mindspark"],
+  ["/mathworks", "MathWorks"],
 ]
 
 export function Arrow() {

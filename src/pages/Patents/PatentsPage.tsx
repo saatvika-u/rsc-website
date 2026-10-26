@@ -54,15 +54,13 @@ export default function PatentsPage() {
       }
     >
       <section className="patent-list" aria-label="RSC patents">
-        {patents.map((patent, index) => (
+        {patents.map((patent) => (
           <article key={patent.registration}>
             <div className="patent-index">
-              <span>{String(index + 1).padStart(2, "0")}</span>
               <PatentMark />
               <strong>{patent.caption}</strong>
             </div>
             <div className="patent-content">
-              <span>Patent</span>
               <h2>{patent.title}</h2>
               <dl>
                 <div>
